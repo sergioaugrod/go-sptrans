@@ -27,6 +27,16 @@ type service struct {
 	client *Client
 }
 
+func NewClient(token string) *Client {
+	baseURL, _ := url.Parse(defaultBaseURL)
+	httpClient := http.DefaultClient
+
+	client := &Client{BaseURL: baseURL, Http: httpClient, Token: token}
+	client.Route = &RouteService{client: client}
+
+	return client
+}
+
 func (c *Client) Request(method, path string, bodyParams interface{}, decoder interface{}) (*http.Response, error) {
 	var buffer io.ReadWriter
 	url, _ := c.BaseURL.Parse(path)
@@ -46,44 +56,24 @@ func (c *Client) Request(method, path string, bodyParams interface{}, decoder in
 		return nil, err
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
-
-	if err != nil {
-		return nil, err
-	}
-
+	body, _ := ioutil.ReadAll(resp.Body)
 	json.Unmarshal(body, &decoder)
 
 	return resp, nil
 }
 
-func NewClient(token string) (*Client, error) {
-	baseURL, _ := url.Parse(defaultBaseURL)
-	cookieJar, err := getAuthCookieJar(token, baseURL)
+func (c *Client) Authenticate() (bool, error) {
+	authPath := fmt.Sprintf("%s?token=%s", defaultAuthPath, c.Token)
+	url, _ := c.BaseURL.Parse(authPath)
+	resp, err := c.Http.Post(url.String(), "application/json", nil)
 
 	if err != nil {
-		return nil, fmt.Errorf("Authentication failed with token %s.", token)
-	}
-
-	httpClient := &http.Client{Jar: cookieJar}
-
-	client := &Client{BaseURL: baseURL, Http: httpClient, Token: token}
-	client.Route = &RouteService{client: client}
-
-	return client, nil
-}
-
-func getAuthCookieJar(token string, baseURL *url.URL) (*cookiejar.Jar, error) {
-	authPath := fmt.Sprintf("%s?token=%s", defaultAuthPath, token)
-	url, _ := baseURL.Parse(authPath)
-	resp, err := http.Post(url.String(), "application/json", nil)
-
-	if err != nil || resp.StatusCode != 200 {
-		return nil, err
+		return false, err
 	}
 
 	jar, _ := cookiejar.New(nil)
-	jar.SetCookies(baseURL, resp.Cookies())
+	jar.SetCookies(c.BaseURL, resp.Cookies())
+	c.Http.Jar = jar
 
-	return jar, nil
+	return true, nil
 }
