@@ -22,6 +22,7 @@ go get github.com/sergioaugrod/go-sptrans/sptrans
 ### Search Route by description or number
 
 ```go
+token = "123456"
 client = sptrans.NewClient(token)
 client.Authenticate()
 
@@ -32,6 +33,7 @@ client.Route.Search("8000")
 ### Search Route by direction
 
 ```go
+token = "123456"
 client = sptrans.NewClient(token)
 client.Authenticate()
 
