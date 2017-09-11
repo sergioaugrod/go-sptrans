@@ -8,23 +8,36 @@ import (
 	"testing"
 )
 
-func TestNewClientToReturnClient(t *testing.T) {
-	token := "123456"
-	client := NewClient(token)
+var (
+	mux    *http.ServeMux
+	client *Client
+	server *httptest.Server
+)
 
-	if client.Token != token {
-		t.Errorf("Client token is not equal %s", token)
+func setup() {
+	mux = http.NewServeMux()
+	server = httptest.NewServer(mux)
+	client = NewClient("123456")
+	url, _ := url.Parse(server.URL + "/")
+	client.BaseURL = url
+}
+
+func tearDown() {
+	server.Close()
+}
+
+func TestNewClientToReturnClient(t *testing.T) {
+	setup()
+	defer tearDown()
+
+	if client.Token != "123456" {
+		t.Error("Client token is not equal 123456")
 	}
 }
 
 func TestAuthenticateToSetHttpJar(t *testing.T) {
-	mux := http.NewServeMux()
-	server := httptest.NewServer(mux)
-	client := NewClient("123456")
-	url, _ := url.Parse(server.URL + "/")
-	client.BaseURL = url
-
-	defer server.Close()
+	setup()
+	defer tearDown()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if "POST" != r.Method {
