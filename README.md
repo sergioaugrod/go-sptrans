@@ -4,7 +4,7 @@ go-sptrans is a Go client library for the [SPTrans Olho Vivo API](http://www.spt
 
 ### Features
 
-- [ ] Routes 
+- [x] Routes 
 - [ ] Stops
 - [ ] Corridors 
 - [ ] Companies
@@ -19,7 +19,27 @@ go get github.com/sergioaugrod/go-sptrans/sptrans
 
 ## Usage
 
-...
+### Search Route by description or number
+
+```go
+token = "123456"
+client = sptrans.NewClient(token)
+client.Authenticate()
+
+client.Route.Search("Lapa")
+client.Route.Search("8000")
+```
+
+### Search Route by direction
+
+```go
+token = "123456"
+client = sptrans.NewClient(token)
+client.Authenticate()
+
+client.Route.SearchByDirection("Lapa", 1)
+client.Route.SearchByDirection("Lapa", 2)
+```
 
 ## Contributing
 
