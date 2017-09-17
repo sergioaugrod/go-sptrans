@@ -1,5 +1,5 @@
 /*
-Package go-sptrans is a Go client library for the SPTrans Olho Vivo API.
+Package sptrans is a Go client library for the SPTrans Olho Vivo API.
 
 Authentication:
 
