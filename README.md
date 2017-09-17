@@ -20,6 +20,12 @@ go get github.com/sergioaugrod/go-sptrans/sptrans
 
 ## Usage
 
+### Import
+
+```go
+import "github.com/sergioaugrod/go-sptrans/sptrans"
+```
+
 ### Authentication
 
 ```go
@@ -28,18 +34,39 @@ client = sptrans.NewClient(token)
 client.Authenticate()
 ```
 
-### Search Route by description or number
+### Endpoints
+
+#### Search Route by description or number
 
 ```go
 client.Route.Search("Lapa")
 client.Route.Search("8000")
 ```
 
-### Search Route by direction
+#### Search Route by direction
 
 ```go
 client.Route.SearchByDirection("Lapa", 1)
 client.Route.SearchByDirection("Lapa", 2)
+```
+
+#### Search Stop by name or address
+
+```go
+client.Stop.Search("Afonso")
+client.Stop.Search("Rua Baltharzar da Veiga")
+```
+
+#### Search Stop by route code
+
+```go
+client.Stop.SearchByRoute(1273)
+```
+
+#### Search Stop by corridor code
+
+```go
+client.Stop.SearchByCorridor(8)
 ```
 
 ## Contributing

@@ -21,6 +21,7 @@ type Client struct {
 	BaseURL *url.URL
 	HTTP    *http.Client
 	Route   *RouteService
+	Stop    *StopService
 	Token   string
 }
 
@@ -35,6 +36,7 @@ func NewClient(token string) *Client {
 
 	client := &Client{BaseURL: baseURL, HTTP: httpClient, Token: token}
 	client.Route = &RouteService{client: client}
+	client.Stop = &StopService{client: client}
 
 	return client
 }
