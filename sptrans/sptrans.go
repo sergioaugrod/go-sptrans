@@ -16,6 +16,7 @@ const (
 	defaultAuthPath = "Login/Autenticar"
 )
 
+// Client is a SPTrans client for making Olho Vivo API requests
 type Client struct {
 	BaseURL *url.URL
 	Http    *http.Client
@@ -27,6 +28,7 @@ type service struct {
 	client *Client
 }
 
+// NewClient returns client with default configurations
 func NewClient(token string) *Client {
 	baseURL, _ := url.Parse(defaultBaseURL)
 	httpClient := http.DefaultClient
@@ -37,6 +39,7 @@ func NewClient(token string) *Client {
 	return client
 }
 
+// Request enables requests for a given api path, and decodes the return according to a structure
 func (c *Client) Request(method, path string, bodyParams interface{}, decoder interface{}) (*http.Response, error) {
 	var buffer io.ReadWriter
 	url, _ := c.BaseURL.Parse(path)
@@ -62,6 +65,7 @@ func (c *Client) Request(method, path string, bodyParams interface{}, decoder in
 	return resp, nil
 }
 
+// Authenticate authenticates according to client token
 func (c *Client) Authenticate() (bool, error) {
 	authPath := fmt.Sprintf("%s?token=%s", defaultAuthPath, c.Token)
 	url, _ := c.BaseURL.Parse(authPath)
