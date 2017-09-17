@@ -1,5 +1,5 @@
 /*
-go-sptrans is a Go client library for the SPTrans Olho Vivo API.
+Package go-sptrans is a Go client library for the SPTrans Olho Vivo API.
 
 Authentication:
 
@@ -17,5 +17,4 @@ Search Route by direction:
         client.Route.SearchByDirection("Lapa", 1)
         client.Route.SearchByDirection("Lapa", 2)
 */
-
 package sptrans

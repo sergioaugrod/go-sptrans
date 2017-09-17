@@ -19,7 +19,7 @@ const (
 // Client is a SPTrans client for making Olho Vivo API requests
 type Client struct {
 	BaseURL *url.URL
-	Http    *http.Client
+	HTTP    *http.Client
 	Route   *RouteService
 	Token   string
 }
@@ -33,7 +33,7 @@ func NewClient(token string) *Client {
 	baseURL, _ := url.Parse(defaultBaseURL)
 	httpClient := http.DefaultClient
 
-	client := &Client{BaseURL: baseURL, Http: httpClient, Token: token}
+	client := &Client{BaseURL: baseURL, HTTP: httpClient, Token: token}
 	client.Route = &RouteService{client: client}
 
 	return client
@@ -53,7 +53,7 @@ func (c *Client) Request(method, path string, bodyParams interface{}, decoder in
 	}
 
 	req, _ := http.NewRequest(method, url.String(), buffer)
-	resp, err := c.Http.Do(req)
+	resp, err := c.HTTP.Do(req)
 
 	if err != nil {
 		return nil, err
@@ -69,7 +69,7 @@ func (c *Client) Request(method, path string, bodyParams interface{}, decoder in
 func (c *Client) Authenticate() (bool, error) {
 	authPath := fmt.Sprintf("%s?token=%s", defaultAuthPath, c.Token)
 	url, _ := c.BaseURL.Parse(authPath)
-	resp, err := c.Http.Post(url.String(), "application/json", nil)
+	resp, err := c.HTTP.Post(url.String(), "application/json", nil)
 
 	if err != nil {
 		return false, err
@@ -77,7 +77,7 @@ func (c *Client) Authenticate() (bool, error) {
 
 	jar, _ := cookiejar.New(nil)
 	jar.SetCookies(c.BaseURL, resp.Cookies())
-	c.Http.Jar = jar
+	c.HTTP.Jar = jar
 
 	return true, nil
 }
