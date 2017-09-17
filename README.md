@@ -6,7 +6,7 @@ go-sptrans is a Go client library for the [SPTrans Olho Vivo API](http://www.spt
 ### Features
 
 - [x] Routes 
-- [ ] Stops
+- [x] Stops
 - [ ] Corridors 
 - [ ] Companies
 - [ ] Position of vehicles
