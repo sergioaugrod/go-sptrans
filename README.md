@@ -36,36 +36,28 @@ client.Authenticate()
 
 ### Endpoints
 
-#### Search Route by description or number
+#### Routes
 
 ```go
+// Search by route description or number
 client.Route.Search("Lapa")
 client.Route.Search("8000")
-```
 
-#### Search Route by direction
-
-```go
+// Search by route direction
 client.Route.SearchByDirection("Lapa", 1)
-client.Route.SearchByDirection("Lapa", 2)
 ```
 
-#### Search Stop by name or address
+#### Stops
 
 ```go
+// Search by stop name or address
 client.Stop.Search("Afonso")
 client.Stop.Search("Rua Baltharzar da Veiga")
-```
 
-#### Search Stop by route code
-
-```go
+// Search by route code
 client.Stop.SearchByRoute(1273)
-```
 
-#### Search Stop by corridor code
-
-```go
+// Search by corridor code
 client.Stop.SearchByCorridor(8)
 ```
 
