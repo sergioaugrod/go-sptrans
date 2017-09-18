@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## 0.2.0 - 2017-09-17
+## [0.2.0] - 2017-09-17
 ### Added
 - Stops endpoints
 - Corridors endpoints
