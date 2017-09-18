@@ -18,11 +18,12 @@ const (
 
 // Client is a SPTrans client for making Olho Vivo API requests
 type Client struct {
-	BaseURL *url.URL
-	HTTP    *http.Client
-	Route   *RouteService
-	Stop    *StopService
-	Token   string
+	BaseURL  *url.URL
+	HTTP     *http.Client
+	Route    *RouteService
+	Stop     *StopService
+	Corridor *CorridorService
+	Token    string
 }
 
 type service struct {
@@ -37,6 +38,7 @@ func NewClient(token string) *Client {
 	client := &Client{BaseURL: baseURL, HTTP: httpClient, Token: token}
 	client.Route = &RouteService{client: client}
 	client.Stop = &StopService{client: client}
+	client.Corridor = &CorridorService{client: client}
 
 	return client
 }
