@@ -28,10 +28,10 @@ Stops
        client.Stop.Search("Afonso")
        client.Stop.Search("Rua Baltharzar da Veiga")
 
-       // Search by line code
+       // Search by line id
        client.Stop.SearchByLine(1273)
 
-       // Search by corridor code
+       // Search by corridor id
        client.Stop.SearchByCorridor(8)
 
 Corridors
