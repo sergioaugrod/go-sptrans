@@ -6,7 +6,7 @@ import (
 
 const (
 	defaultStopPath         = "Parada/Buscar"
-	defaultStopRoutePath    = "Parada/BuscarParadasPorLinha"
+	defaultStopLinePath     = "Parada/BuscarParadasPorLinha"
 	defaultStopCorridorPath = "Parada/BuscarParadasPorCorredor"
 )
 
@@ -15,11 +15,11 @@ type StopService service
 
 // Stop structure, see documentation on http://www.sptrans.com.br/desenvolvedores/APIOlhoVivo/Documentacao.aspx?1#docApi-paradas
 type Stop struct {
-	Cp int64   `json:"cp"`
-	Np string  `json:"np"`
-	Ed string  `json:"ed"`
-	Py float64 `json:"py"`
-	Px float64 `json:"px"`
+	Id        int64   `json:"cp"`
+	Name      string  `json:"np"`
+	Address   string  `json:"ed"`
+	Latitude  float64 `json:"py"`
+	Longitude float64 `json:"px"`
 }
 
 // Search performs a search of the bus stops based on the parameter informed (stop name or address)
@@ -35,9 +35,9 @@ func (r *StopService) Search(filter string) ([]*Stop, error) {
 	return stops, err
 }
 
-// SearchByRoute performs a search of the bus stops based on the route code
-func (r *StopService) SearchByRoute(routeCode int) ([]*Stop, error) {
-	path := fmt.Sprintf("%s?codigoLinha=%d", defaultStopRoutePath, routeCode)
+// SearchByLine performs a search of the bus stops based on the line id
+func (r *StopService) SearchByLine(lineId int) ([]*Stop, error) {
+	path := fmt.Sprintf("%s?codigoLinha=%d", defaultStopLinePath, lineId)
 	var stops []*Stop
 	_, err := r.client.Request("GET", path, nil, &stops)
 
@@ -48,9 +48,9 @@ func (r *StopService) SearchByRoute(routeCode int) ([]*Stop, error) {
 	return stops, err
 }
 
-// SearchByCorridor performs a search of the bus stops based on the corridor code
-func (r *StopService) SearchByCorridor(corridorCode int) ([]*Stop, error) {
-	path := fmt.Sprintf("%s?codigoCorredor=%d", defaultStopCorridorPath, corridorCode)
+// SearchByCorridor performs a search of the bus stops based on the corridor id
+func (r *StopService) SearchByCorridor(corridorId int) ([]*Stop, error) {
+	path := fmt.Sprintf("%s?codigoCorredor=%d", defaultStopCorridorPath, corridorId)
 	var stops []*Stop
 	_, err := r.client.Request("GET", path, nil, &stops)
 

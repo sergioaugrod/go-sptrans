@@ -5,14 +5,17 @@ go-sptrans is a Go client library for the [SPTrans Olho Vivo API](http://www.spt
 
 ### Features
 
-- [x] Routes 
+- [x] Lines
 - [x] Stops
-- [ ] Corridors 
-- [ ] Companies
+- [x] Corridors
+- [x] Companies
 - [ ] Position of vehicles
-- [ ] Arrival Forecast 
+- [ ] Arrival Forecast
 - [ ] Speed on lanes
 
+## Documentation
+
+See the documentation at [godoc](https://godoc.org/github.com/sergioaugrod/go-sptrans).
 
 ## Install
 
@@ -36,15 +39,15 @@ client.Authenticate()
 
 ### Endpoints
 
-#### Routes
+#### Lines
 
 ```go
-// Search by route description or number
-client.Route.Search("Lapa")
-client.Route.Search("8000")
+// Search by line description or number
+client.Line.Search("Lapa")
+client.Line.Search("8000")
 
-// Search by route direction
-client.Route.SearchByDirection("Lapa", 1)
+// Search by line direction
+client.Line.SearchByDirection("Lapa", 1)
 ```
 
 #### Stops
@@ -54,11 +57,25 @@ client.Route.SearchByDirection("Lapa", 1)
 client.Stop.Search("Afonso")
 client.Stop.Search("Rua Baltharzar da Veiga")
 
-// Search by route code
-client.Stop.SearchByRoute(1273)
+// Search by line code
+client.Stop.SearchByLine(1273)
 
 // Search by corridor code
 client.Stop.SearchByCorridor(8)
+```
+
+#### Corridors
+
+```go
+// All smart corridors
+client.Corridor.All()
+```
+
+#### Companies
+
+```go
+// All companies
+client.Company.All()
 ```
 
 ## Contributing
