@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestSearchToReturnRoutes(t *testing.T) {
+func TestSearchToReturnLines(t *testing.T) {
 	setup()
 	defer tearDown()
 
@@ -22,19 +22,19 @@ func TestSearchToReturnRoutes(t *testing.T) {
 		fmt.Fprint(w, `[{"cl":1234,"lc":true,"lt":"N1234","sl":2,"tl":11,"tp":"TERM. PINHEIROS","ts":"TERM. LAPA"}]`)
 	})
 
-	routes, _ := client.Route.Search("Lapa")
-	route := routes[0]
+	lines, _ := client.Line.Search("Lapa")
+	line := lines[0]
 
-	if len(routes) != 1 {
-		t.Error("Routes length different than 1")
+	if len(lines) != 1 {
+		t.Error("Lines length different than 1")
 	}
 
-	if route.Cl != 1234 {
-		t.Error("Route cl different than 1234")
+	if line.Cl != 1234 {
+		t.Error("Line cl different than 1234")
 	}
 }
 
-func TestSearchByDirectionToReturnRoutes(t *testing.T) {
+func TestSearchByDirectionToReturnLines(t *testing.T) {
 	setup()
 	defer tearDown()
 
@@ -50,14 +50,14 @@ func TestSearchByDirectionToReturnRoutes(t *testing.T) {
 		fmt.Fprint(w, `[{"cl":1234,"lc":true,"lt":"N1234","sl":2,"tl":11,"tp":"TERM. PINHEIROS","ts":"TERM. LAPA"}]`)
 	})
 
-	routes, _ := client.Route.SearchByDirection("Lapa", 1)
-	route := routes[0]
+	lines, _ := client.Line.SearchByDirection("Lapa", 1)
+	line := lines[0]
 
-	if len(routes) != 1 {
-		t.Error("Routes length different than 1")
+	if len(lines) != 1 {
+		t.Error("Lines length different than 1")
 	}
 
-	if route.Cl != 1234 {
-		t.Error("Route cl different than 1234")
+	if line.Cl != 1234 {
+		t.Error("Line cl different than 1234")
 	}
 }

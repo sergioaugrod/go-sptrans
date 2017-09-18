@@ -20,7 +20,7 @@ const (
 type Client struct {
 	BaseURL  *url.URL
 	HTTP     *http.Client
-	Route    *RouteService
+	Line     *LineService
 	Stop     *StopService
 	Corridor *CorridorService
 	Company  *CompanyService
@@ -37,7 +37,7 @@ func NewClient(token string) *Client {
 	httpClient := http.DefaultClient
 
 	client := &Client{BaseURL: baseURL, HTTP: httpClient, Token: token}
-	client.Route = &RouteService{client: client}
+	client.Line = &LineService{client: client}
 	client.Stop = &StopService{client: client}
 	client.Corridor = &CorridorService{client: client}
 	client.Company = &CompanyService{client: client}
