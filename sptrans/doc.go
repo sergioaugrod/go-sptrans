@@ -15,9 +15,9 @@ Endpoints:
 
 Lines
 
-	// Search by line description or number
-	client.Line.Search("Lapa")
-	client.Line.Search("8000")
+       // Search by line description or number
+       client.Line.Search("Lapa")
+       client.Line.Search("8000")
 
        // Search by line direction
        client.Line.SearchByDirection("Lapa", 1)

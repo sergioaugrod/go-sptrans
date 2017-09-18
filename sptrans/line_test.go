@@ -16,7 +16,7 @@ func TestSearchToReturnLines(t *testing.T) {
 		}
 
 		if r.URL.String() != "/Linha/Buscar?termosBusca=Lapa" {
-			t.Error("Incorrect requested url: %s", r.URL.String())
+			t.Errorf("Incorrect requested url: %s", r.URL.String())
 		}
 
 		fmt.Fprint(w, `[{"cl":1234,"lc":true,"lt":"N1234","sl":2,"tl":11,"tp":"TERM. PINHEIROS","ts":"TERM. LAPA"}]`)
@@ -68,7 +68,7 @@ func TestSearchByDirectionToReturnLines(t *testing.T) {
 		}
 
 		if r.URL.String() != "/Linha/BuscarLinhaSentido?termosBusca=Lapa&sentido=1" {
-			t.Error("Incorrect requested url: %s", r.URL.String())
+			t.Errorf("Incorrect requested url: %s", r.URL.String())
 		}
 
 		fmt.Fprint(w, `[{"cl":1234,"lc":true,"lt":"N1234","sl":2,"tl":11,"tp":"TERM. PINHEIROS","ts":"TERM. LAPA"}]`)

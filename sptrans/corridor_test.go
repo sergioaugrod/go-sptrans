@@ -16,7 +16,7 @@ func TestAllToReturnCorridors(t *testing.T) {
 		}
 
 		if r.URL.String() != "/Corredor" {
-			t.Error("Incorrect requested url: %s", r.URL.String())
+			t.Errorf("Incorrect requested url: %s", r.URL.String())
 		}
 
 		fmt.Fprint(w, `[{"cc":1234,"nc":"Corredor"}]`)

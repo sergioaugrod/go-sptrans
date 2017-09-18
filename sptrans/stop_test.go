@@ -16,7 +16,7 @@ func TestSearchToReturnStops(t *testing.T) {
 		}
 
 		if r.URL.String() != "/Parada/Buscar?termosBusca=Afonso" {
-			t.Error("Incorrect requested url: %s", r.URL.String())
+			t.Errorf("Incorrect requested url: %s", r.URL.String())
 		}
 
 		fmt.Fprint(w, `[{"cp": 1234, "np": "AFONSO BRAZ", "ed": "R ARMINDA", "py": -23.592938, "px": -46.672727}]`)
@@ -60,7 +60,7 @@ func TestSearchByLine(t *testing.T) {
 		}
 
 		if r.URL.String() != "/Parada/BuscarParadasPorLinha?codigoLinha=123456" {
-			t.Error("Incorrect requested url: %s", r.URL.String())
+			t.Errorf("Incorrect requested url: %s", r.URL.String())
 		}
 
 		fmt.Fprint(w, `[{"cp": 1234, "np": "AFONSO BRAZ", "ed": "R ARMINDA", "py": -23.592938, "px": -46.672727}]`)
@@ -83,7 +83,7 @@ func TestSearchByCorridor(t *testing.T) {
 		}
 
 		if r.URL.String() != "/Parada/BuscarParadasPorCorredor?codigoCorredor=123456" {
-			t.Error("Incorrect requested url: %s", r.URL.String())
+			t.Errorf("Incorrect requested url: %s", r.URL.String())
 		}
 
 		fmt.Fprint(w, `[{"cp": 1234, "np": "AFONSO BRAZ", "ed": "R ARMINDA", "py": -23.592938, "px": -46.672727}]`)

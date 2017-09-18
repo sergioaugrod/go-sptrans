@@ -4,7 +4,7 @@ const (
 	defaultCompanyPath = "Empresa"
 )
 
-// CompanieService provide functions to request companies endpoints
+// CompanyService provide functions to request companies endpoints
 type CompanyService service
 
 // CompanyResponse structure, see documentation on http://www.sptrans.com.br/desenvolvedores/APIOlhoVivo/Documentacao.aspx?1#docApi-empresas

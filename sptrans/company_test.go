@@ -16,7 +16,7 @@ func TestAllToReturnCompanies(t *testing.T) {
 		}
 
 		if r.URL.String() != "/Empresa" {
-			t.Error("Incorrect requested url: %s", r.URL.String())
+			t.Errorf("Incorrect requested url: %s", r.URL.String())
 		}
 
 		fmt.Fprint(w, `{"hr":"00:00","e":[{"a":1,"e":[{"a": 1,"c": 999,"n": "Company"}]}]}`)
