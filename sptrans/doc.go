@@ -38,5 +38,10 @@ Corridors
 
        // All smart corridors
        client.Corridor.All()
+
+Companies
+
+       // All companies
+       client.Company.All()
 */
 package sptrans

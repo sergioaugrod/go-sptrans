@@ -23,6 +23,7 @@ type Client struct {
 	Route    *RouteService
 	Stop     *StopService
 	Corridor *CorridorService
+	Company  *CompanyService
 	Token    string
 }
 
@@ -39,6 +40,7 @@ func NewClient(token string) *Client {
 	client.Route = &RouteService{client: client}
 	client.Stop = &StopService{client: client}
 	client.Corridor = &CorridorService{client: client}
+	client.Company = &CompanyService{client: client}
 
 	return client
 }

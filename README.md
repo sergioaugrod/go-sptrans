@@ -68,6 +68,13 @@ client.Stop.SearchByCorridor(8)
 client.Corridor.All()
 ```
 
+#### Company
+
+```go
+// All companies
+client.Company.All()
+```
+
 ## Contributing
 
 1. Clone it!
