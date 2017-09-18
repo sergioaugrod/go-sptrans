@@ -19,7 +19,7 @@ func TestAllToReturnCorridors(t *testing.T) {
 			t.Error("Incorrect requested url: %s", r.URL.String())
 		}
 
-		fmt.Fprint(w, `[{"cc":1234,"lc":"Corredor"}]`)
+		fmt.Fprint(w, `[{"cc":1234,"nc":"Corredor"}]`)
 	})
 
 	corridors, _ := client.Corridor.All()
@@ -29,7 +29,11 @@ func TestAllToReturnCorridors(t *testing.T) {
 		t.Error("Corridors length different than 1")
 	}
 
-	if corridor.Cc != 1234 {
-		t.Error("Corridor cc different than 1234")
+	if corridor.Id != 1234 {
+		t.Error("Corridor Id different than 1234")
+	}
+
+	if corridor.Name != "Corredor" {
+		t.Error("Corridor Name different than Corredor")
 	}
 }

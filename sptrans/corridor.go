@@ -9,8 +9,8 @@ type CorridorService service
 
 // Corridor structure, see documentation on http://www.sptrans.com.br/desenvolvedores/APIOlhoVivo/Documentacao.aspx?1#docApi-corredores
 type Corridor struct {
-	Cc int64  `json:"cc"`
-	Nc string `json:"nc"`
+	Id   int64  `json:"cc"`
+	Name string `json:"nc"`
 }
 
 // All returns all smart corridors

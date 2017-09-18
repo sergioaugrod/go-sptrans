@@ -29,12 +29,28 @@ func TestSearchToReturnStops(t *testing.T) {
 		t.Error("Stops length different than 1")
 	}
 
-	if stop.Cp != 1234 {
-		t.Error("Stop cp different than 1234")
+	if stop.Id != 1234 {
+		t.Error("Stop Id different than 1234")
+	}
+
+	if stop.Name != "AFONSO BRAZ" {
+		t.Error("Stop Name different than AFONSO BRAZ")
+	}
+
+	if stop.Address != "R ARMINDA" {
+		t.Error("Stop Address different than R ARMINDA")
+	}
+
+	if stop.Latitude != -23.592938 {
+		t.Error("Stop Latitude different than -23.592938")
+	}
+
+	if stop.Longitude != -46.672727 {
+		t.Error("Stop Latitude different than -46.672727")
 	}
 }
 
-func TestSearchByRoute(t *testing.T) {
+func TestSearchByLine(t *testing.T) {
 	setup()
 	defer tearDown()
 
@@ -50,15 +66,10 @@ func TestSearchByRoute(t *testing.T) {
 		fmt.Fprint(w, `[{"cp": 1234, "np": "AFONSO BRAZ", "ed": "R ARMINDA", "py": -23.592938, "px": -46.672727}]`)
 	})
 
-	stops, _ := client.Stop.SearchByRoute(123456)
-	stop := stops[0]
+	stops, _ := client.Stop.SearchByLine(123456)
 
 	if len(stops) != 1 {
 		t.Error("Stops length different than 1")
-	}
-
-	if stop.Cp != 1234 {
-		t.Error("Stop cp different than 1234")
 	}
 }
 
@@ -79,13 +90,8 @@ func TestSearchByCorridor(t *testing.T) {
 	})
 
 	stops, _ := client.Stop.SearchByCorridor(123456)
-	stop := stops[0]
 
 	if len(stops) != 1 {
 		t.Error("Stops length different than 1")
-	}
-
-	if stop.Cp != 1234 {
-		t.Error("Stop cp different than 1234")
 	}
 }

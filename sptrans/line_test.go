@@ -29,8 +29,32 @@ func TestSearchToReturnLines(t *testing.T) {
 		t.Error("Lines length different than 1")
 	}
 
-	if line.Cl != 1234 {
-		t.Error("Line cl different than 1234")
+	if line.Id != 1234 {
+		t.Error("Line Id different than 1234")
+	}
+
+	if line.Circular != true {
+		t.Error("Line Circular different than true")
+	}
+
+	if line.DisplaySign != "N1234" {
+		t.Error("Line DisplaySign different than N1234")
+	}
+
+	if line.Type != 11 {
+		t.Error("Line Type different than 11")
+	}
+
+	if line.Direction != 2 {
+		t.Error("Line Direction different than 2")
+	}
+
+	if line.MainTerminal != "TERM. PINHEIROS" {
+		t.Error("Line MainTerminal different than TERM. PINHEIROS")
+	}
+
+	if line.SecondaryTerminal != "TERM. LAPA" {
+		t.Error("Line SecondaryTerminal different than TERM. LAPA")
 	}
 }
 
@@ -51,13 +75,8 @@ func TestSearchByDirectionToReturnLines(t *testing.T) {
 	})
 
 	lines, _ := client.Line.SearchByDirection("Lapa", 1)
-	line := lines[0]
 
 	if len(lines) != 1 {
 		t.Error("Lines length different than 1")
-	}
-
-	if line.Cl != 1234 {
-		t.Error("Line cl different than 1234")
 	}
 }

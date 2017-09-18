@@ -14,13 +14,13 @@ type LineService service
 
 // Line structure, see documentation on http://www.sptrans.com.br/desenvolvedores/APIOlhoVivo/Documentacao.aspx?1#docApi-linhas
 type Line struct {
-	Cl int64  `json:"cl"`
-	Lc bool   `json:"lc"`
-	Lt string `json:"lt"`
-	Sl int64  `json:"sl"`
-	Tl int64  `json:"tl"`
-	Tp string `json:"tp"`
-	Ts string `json:"ts"`
+	Id                int64  `json:"cl"`
+	Circular          bool   `json:"lc"`
+	DisplaySign       string `json:"lt"`
+	Type              int64  `json:"tl"`
+	Direction         int64  `json:"sl"`
+	MainTerminal      string `json:"tp"`
+	SecondaryTerminal string `json:"ts"`
 }
 
 // Search performs a search of the bus lines based on the parameter informed (description or line number)
