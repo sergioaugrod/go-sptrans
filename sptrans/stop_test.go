@@ -46,7 +46,7 @@ func TestSearchToReturnStops(t *testing.T) {
 	}
 
 	if stop.Longitude != -46.672727 {
-		t.Error("Stop Latitude different than -46.672727")
+		t.Error("Stop Longitude different than -46.672727")
 	}
 }
 

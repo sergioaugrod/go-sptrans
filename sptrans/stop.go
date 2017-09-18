@@ -35,7 +35,7 @@ func (r *StopService) Search(filter string) ([]*Stop, error) {
 	return stops, err
 }
 
-// SearchByLine performs a search of the bus stops based on the line code
+// SearchByLine performs a search of the bus stops based on the line id
 func (r *StopService) SearchByLine(lineId int) ([]*Stop, error) {
 	path := fmt.Sprintf("%s?codigoLinha=%d", defaultStopLinePath, lineId)
 	var stops []*Stop
@@ -48,7 +48,7 @@ func (r *StopService) SearchByLine(lineId int) ([]*Stop, error) {
 	return stops, err
 }
 
-// SearchByCorridor performs a search of the bus stops based on the corridor code
+// SearchByCorridor performs a search of the bus stops based on the corridor id
 func (r *StopService) SearchByCorridor(corridorId int) ([]*Stop, error) {
 	path := fmt.Sprintf("%s?codigoCorredor=%d", defaultStopCorridorPath, corridorId)
 	var stops []*Stop
