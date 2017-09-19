@@ -48,5 +48,11 @@ Vehicles Position
 
        // All Vehicles Position
        client.VehiclePosition.All()
+
+       // Search by line id
+       client.VehiclePosition.SearchByLine(1273)
+
+       // Search by company id
+       client.VehiclePosition.SearchByCompany(99)
 */
 package sptrans
