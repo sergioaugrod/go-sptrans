@@ -79,3 +79,49 @@ func TestAllToReturnVehiclesPosition(t *testing.T) {
 		t.Error("vehicle Longitude different than -46.65674")
 	}
 }
+
+func TestSearchByLineToReturnVehiclesPosition(t *testing.T) {
+	setup()
+	defer tearDown()
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if "GET" != r.Method {
+			t.Error("Request method is not GET")
+		}
+
+		if r.URL.String() != "/Posicao/Linha?codigoLinha=123456" {
+			t.Errorf("Incorrect requested url: %s", r.URL.String())
+		}
+
+		fmt.Fprint(w, `{"hr":"19:57","vs":[{"p":"11433","a":false,"ta":"2017-05-07T22:57:02Z","py":-23.540150375000003,"px":-46.64414075}]}`)
+	})
+
+	vehiclesPosition, _ := client.VehiclePosition.SearchByLine(123456)
+
+	if len(vehiclesPosition) != 1 {
+		t.Error("VehiclesPosition length different than 1")
+	}
+}
+
+func TestSearchByCompanyToReturnVehiclesPosition(t *testing.T) {
+	setup()
+	defer tearDown()
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if "GET" != r.Method {
+			t.Error("Request method is not GET")
+		}
+
+		if r.URL.String() != "/Posicao/Garagem?codigoEmpresa=123456" {
+			t.Errorf("Incorrect requested url: %s", r.URL.String())
+		}
+
+		fmt.Fprint(w, `{"hr":"11:30","l":[{"c":"5015-10","cl":33887,"sl":2,"lt0":"METRÔ JABAQUARA","lt1":"JD. SÃO JORGE","qv":1,"vs":[{"p":68021,"a":true,"ta":"2017-05-12T14:30:37Z","py":-23.678712500000003,"px":-46.65674}]}]}`)
+	})
+
+	vehiclesPosition, _ := client.VehiclePosition.SearchByCompany(123456)
+
+	if len(vehiclesPosition) != 1 {
+		t.Error("VehiclesPosition length different than 1")
+	}
+}
