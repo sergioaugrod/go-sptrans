@@ -31,9 +31,5 @@ func (r *CompanyService) All() ([]*CompanyOperation, error) {
 	var companyResponse *CompanyResponse
 	_, err := r.client.Request("GET", defaultCompanyPath, nil, &companyResponse)
 
-	if err != nil {
-		return nil, err
-	}
-
 	return companyResponse.Operations, err
 }

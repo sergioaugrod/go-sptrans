@@ -29,10 +29,6 @@ func (r *LineService) Search(filter string) ([]*Line, error) {
 	var lines []*Line
 	_, err := r.client.Request("GET", path, nil, &lines)
 
-	if err != nil {
-		return nil, err
-	}
-
 	return lines, err
 }
 
@@ -41,10 +37,6 @@ func (r *LineService) SearchByDirection(filter string, direction int) ([]*Line, 
 	path := fmt.Sprintf("%s?termosBusca=%s&sentido=%d", defaultLineDirectionPath, filter, direction)
 	var lines []*Line
 	_, err := r.client.Request("GET", path, nil, &lines)
-
-	if err != nil {
-		return nil, err
-	}
 
 	return lines, err
 }

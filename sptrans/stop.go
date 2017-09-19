@@ -28,10 +28,6 @@ func (r *StopService) Search(filter string) ([]*Stop, error) {
 	var stops []*Stop
 	_, err := r.client.Request("GET", path, nil, &stops)
 
-	if err != nil {
-		return nil, err
-	}
-
 	return stops, err
 }
 
@@ -41,10 +37,6 @@ func (r *StopService) SearchByLine(lineId int) ([]*Stop, error) {
 	var stops []*Stop
 	_, err := r.client.Request("GET", path, nil, &stops)
 
-	if err != nil {
-		return nil, err
-	}
-
 	return stops, err
 }
 
@@ -53,10 +45,6 @@ func (r *StopService) SearchByCorridor(corridorId int) ([]*Stop, error) {
 	path := fmt.Sprintf("%s?codigoCorredor=%d", defaultStopCorridorPath, corridorId)
 	var stops []*Stop
 	_, err := r.client.Request("GET", path, nil, &stops)
-
-	if err != nil {
-		return nil, err
-	}
 
 	return stops, err
 }

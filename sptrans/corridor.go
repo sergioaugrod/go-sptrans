@@ -18,9 +18,5 @@ func (r *CorridorService) All() ([]*Corridor, error) {
 	var corridors []*Corridor
 	_, err := r.client.Request("GET", defaultCorridorPath, nil, &corridors)
 
-	if err != nil {
-		return nil, err
-	}
-
 	return corridors, err
 }
