@@ -43,5 +43,10 @@ Companies
 
        // All companies
        client.Company.All()
+
+Vehicles Position
+
+       // All Vehicles Position
+       client.VehiclePosition.All()
 */
 package sptrans
