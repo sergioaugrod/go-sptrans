@@ -50,7 +50,7 @@ func TestSearchToReturnStops(t *testing.T) {
 	}
 }
 
-func TestSearchByLine(t *testing.T) {
+func TestSearchByLineToReturnStops(t *testing.T) {
 	setup()
 	defer tearDown()
 
@@ -73,7 +73,7 @@ func TestSearchByLine(t *testing.T) {
 	}
 }
 
-func TestSearchByCorridor(t *testing.T) {
+func TestSearchByCorridorToReturnStops(t *testing.T) {
 	setup()
 	defer tearDown()
 
