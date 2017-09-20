@@ -27,14 +27,6 @@ func TestAllToReturnVehiclesPosition(t *testing.T) {
 	vehicles := vehiclePosition.Vehicles
 	vehicle := vehicles[0]
 
-	if len(vehiclesPosition) != 1 {
-		t.Error("VehiclesPosition length different than 1")
-	}
-
-	if len(vehicles) != 1 {
-		t.Error("Vehicles length different than 1")
-	}
-
 	if vehiclePosition.FullSign != "5015-10" {
 		t.Error("VehiclePosition FullSign different than 5015-10")
 	}
