@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"net/http/cookiejar"
 	"net/url"
+	"strconv"
 )
 
 const (
@@ -80,8 +81,10 @@ func (c *Client) Authenticate() (bool, error) {
 	authPath := fmt.Sprintf("%s?token=%s", defaultAuthPath, c.Token)
 	url, _ := c.BaseURL.Parse(authPath)
 	resp, err := c.HTTP.Post(url.String(), "application/json", nil)
+	body, err := ioutil.ReadAll(resp.Body)
+	auth, err := strconv.ParseBool(string(body))
 
-	if err != nil {
+	if auth != true || err != nil {
 		return false, err
 	}
 

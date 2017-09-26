@@ -35,7 +35,7 @@ func TestNewClientToReturnClient(t *testing.T) {
 	}
 }
 
-func TestAuthenticateToSetHttpJar(t *testing.T) {
+func TestAuthenticateToReturnTrue(t *testing.T) {
 	setup()
 	defer tearDown()
 
@@ -51,5 +51,55 @@ func TestAuthenticateToSetHttpJar(t *testing.T) {
 		fmt.Fprint(w, `true`)
 	})
 
-	client.Authenticate()
+	auth, _ := client.Authenticate()
+
+	if auth != true {
+		t.Error("Authenticate not return true")
+	}
+}
+
+func TestAuthenticateToReturnFalse(t *testing.T) {
+	setup()
+	defer tearDown()
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if "POST" != r.Method {
+			t.Error("Request method is not POST")
+		}
+
+		if r.URL.String() != "/Login/Autenticar?token=123456" {
+			t.Error("Incorrect requested url")
+		}
+
+		fmt.Fprint(w, `false`)
+	})
+
+	auth, err := client.Authenticate()
+
+	if auth != false && err != nil {
+		t.Error("Authenticate not return false")
+	}
+}
+
+func TestAuthenticateToReturnError(t *testing.T) {
+	setup()
+	defer tearDown()
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if "POST" != r.Method {
+			t.Error("Request method is not POST")
+		}
+
+		if r.URL.String() != "/Login/Autenticar?token=123456" {
+			t.Error("Incorrect requested url")
+		}
+
+		fmt.Fprint(w, nil)
+	})
+
+	_, err := client.Authenticate()
+
+	if err == nil {
+		t.Error("Authenticate not return error")
+	}
 }

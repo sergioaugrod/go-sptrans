@@ -88,8 +88,6 @@ func (r *ForecastService) SearchByLine(lineId int) ([]*ForecastLineStop, error) 
 func (r *ForecastService) SearchByStop(stopId int) (ForecastStop, error) {
 	path := fmt.Sprintf("%s?codigoParada=%d", defaultForecastStopPath, stopId)
 
-	fmt.Println(path)
-
 	var forecastResponse *ForecastResponse
 	_, err := r.client.Request("GET", path, nil, &forecastResponse)
 
