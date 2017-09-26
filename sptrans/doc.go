@@ -54,5 +54,16 @@ Vehicles Position
 
        // Search by company id
        client.VehiclePosition.SearchByCompany(99)
+
+Forecast
+
+       // Search by stop id and line id
+       client.Forecast.Search(2003, 2004)
+
+       // Search by line id
+       client.Forecast.SearchByLine(1273)
+
+       // Search by stop id
+       client.Forecast.SearchByStop(8)
 */
 package sptrans

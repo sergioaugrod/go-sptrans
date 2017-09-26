@@ -9,7 +9,7 @@ go-sptrans is a Go client library for the [SPTrans Olho Vivo API](http://www.spt
 - [x] Corridors
 - [x] Companies
 - [x] Vehicles Position
-- [ ] Arrival Forecast
+- [x] Forecast
 
 ## Documentation
 
@@ -87,6 +87,19 @@ client.VehiclePosition.SearchByLine(1273)
 
 // Search by company id
 client.VehiclePosition.SearchByCompany(99)
+```
+
+#### Forecast
+
+```go
+// Search by stop id and line id
+client.Forecast.Search(4200953, 2004)
+
+// Search by line id
+client.Forecast.SearchByLine(1273)
+
+// Search by stop id
+client.Forecast.SearchByStop(8)
 ```
 
 ## Contributing

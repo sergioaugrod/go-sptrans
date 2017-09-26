@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"net/http/cookiejar"
 	"net/url"
+	"strconv"
 )
 
 const (
@@ -25,6 +26,7 @@ type Client struct {
 	Corridor        *CorridorService
 	Company         *CompanyService
 	VehiclePosition *VehiclePositionService
+	Forecast        *ForecastService
 	Token           string
 }
 
@@ -43,6 +45,7 @@ func NewClient(token string) *Client {
 	client.Corridor = &CorridorService{client: client}
 	client.Company = &CompanyService{client: client}
 	client.VehiclePosition = &VehiclePositionService{client: client}
+	client.Forecast = &ForecastService{client: client}
 
 	return client
 }
@@ -78,8 +81,10 @@ func (c *Client) Authenticate() (bool, error) {
 	authPath := fmt.Sprintf("%s?token=%s", defaultAuthPath, c.Token)
 	url, _ := c.BaseURL.Parse(authPath)
 	resp, err := c.HTTP.Post(url.String(), "application/json", nil)
+	body, err := ioutil.ReadAll(resp.Body)
+	auth, err := strconv.ParseBool(string(body))
 
-	if err != nil {
+	if auth != true || err != nil {
 		return false, err
 	}
 
